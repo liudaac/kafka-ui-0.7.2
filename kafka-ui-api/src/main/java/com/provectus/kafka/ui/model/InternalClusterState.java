@@ -40,10 +40,10 @@ public class InternalClusterState {
     brokerCount = statistics.getClusterDescription().getNodes().size();
     activeControllers = statistics.getMetrics().getController();
     if (activeControllers == null || activeControllers < 0) {
-    	activeControllers = Optional.ofNullable(statistics.getClusterDescription().getController())
-    	        .map(Node::id)
-    	        .orElse(null);
-	}
+      activeControllers = Optional.ofNullable(statistics.getClusterDescription().getController())
+              .map(Node::id)
+              .orElse(null);
+    }
     version = statistics.getVersion();
 
     if (statistics.getLogDirInfo() != null) {
