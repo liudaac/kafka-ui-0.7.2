@@ -129,35 +129,49 @@ public class InternalTopic {
 
     topic.bytesInPerSec(metrics.getTopicBytesInPerSec().get(topicDescription.name()) == null
             ? BigDecimal.ZERO : metrics.getTopicBytesInPerSec().get(topicDescription.name()));
-        topic.bytesOutPerSec(metrics.getTopicBytesOutPerSec().get(topicDescription.name()) == null 
+    topic.bytesOutPerSec(metrics.getTopicBytesOutPerSec().get(topicDescription.name()) == null 
             ? BigDecimal.ZERO : metrics.getTopicBytesOutPerSec().get(topicDescription.name()));
         
-        topic.messageInMeanRate(metrics.getMessageInMeanRate().get(topicDescription.name()) == null
-        	? BigDecimal.ZERO : metrics.getMessageInMeanRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.messageInOneMinuteRate(metrics.getMessageInOneMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getMessageInOneMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.messageInFiveMinuteRate(metrics.getMessageInFiveMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getMessageInFiveMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.messageInFifteenMinuteRate(metrics.getMessageInFifteenMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getMessageInFifteenMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.messageInMeanRate(metrics.getMessageInMeanRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getMessageInMeanRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.messageInOneMinuteRate(metrics.getMessageInOneMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getMessageInOneMinuteRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.messageInFiveMinuteRate(metrics.getMessageInFiveMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getMessageInFiveMinuteRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.messageInFifteenMinuteRate(metrics.getMessageInFifteenMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getMessageInFifteenMinuteRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
         
-        topic.fetchRequestsMeanRate(metrics.getFetchRequestsMeanRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getFetchRequestsMeanRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.fetchRequestsOneMinuteRate(metrics.getFetchRequestsOneMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getFetchRequestsOneMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.fetchRequestsFiveMinuteRate(metrics.getFetchRequestsFiveMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getFetchRequestsFiveMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.fetchRequestsFifteenMinuteRate(metrics.getFetchRequestsFifteenMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getFetchRequestsFifteenMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.fetchRequestsMeanRate(metrics.getFetchRequestsMeanRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getFetchRequestsMeanRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.fetchRequestsOneMinuteRate(metrics.getFetchRequestsOneMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getFetchRequestsOneMinuteRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.fetchRequestsFiveMinuteRate(metrics.getFetchRequestsFiveMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getFetchRequestsFiveMinuteRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.fetchRequestsFifteenMinuteRate(
+        metrics.getFetchRequestsFifteenMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getFetchRequestsFifteenMinuteRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
             
-        topic.produceRequestsMeanRate(metrics.getProduceRequestsMeanRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getProduceRequestsMeanRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.produceRequestsOneMinuteRate(metrics.getProduceRequestsOneMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getProduceRequestsOneMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.produceRequestsFiveMinuteRate(metrics.getProduceRequestsFiveMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getProduceRequestsFiveMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
-        topic.produceRequestsFifteenMinuteRate(metrics.getProduceRequestsFifteenMinuteRate().get(topicDescription.name()) == null
-            	? BigDecimal.ZERO : metrics.getProduceRequestsFifteenMinuteRate().get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.produceRequestsMeanRate(metrics.getProduceRequestsMeanRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getProduceRequestsMeanRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.produceRequestsOneMinuteRate(metrics.getProduceRequestsOneMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getProduceRequestsOneMinuteRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.produceRequestsFiveMinuteRate(metrics.getProduceRequestsFiveMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getProduceRequestsFiveMinuteRate()
+                .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
+    topic.produceRequestsFifteenMinuteRate(
+        metrics.getProduceRequestsFifteenMinuteRate().get(topicDescription.name()) == null
+            ? BigDecimal.ZERO : metrics.getProduceRequestsFifteenMinuteRate()
+                                          .get(topicDescription.name()).setScale(2, RoundingMode.HALF_UP));
 
     topic.topicConfigs(
         configs.stream().map(InternalTopicConfig::from).collect(Collectors.toList()));
