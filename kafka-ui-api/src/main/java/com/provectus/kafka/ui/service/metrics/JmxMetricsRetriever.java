@@ -61,7 +61,8 @@ class JmxMetricsRetriever implements MetricsRetriever, Closeable {
 
   @SneakyThrows
   private List<RawMetric> retrieveSync(KafkaCluster c, Node node) {
-    String jmxUrl = JMX_URL + node.host() + ":" + c.getMetricsConfig().getPort() + "/" + JMX_SERVICE_TYPE;
+    int port = node.port() + c.getMetricsConfig().getPort();
+    String jmxUrl = JMX_URL + node.host() + ":" + port + "/" + JMX_SERVICE_TYPE;
     log.debug("Collection JMX metrics for {}", jmxUrl);
     List<RawMetric> result = new ArrayList<>();
     withJmxConnector(jmxUrl, c, jmxConnector -> getMetricsFromJmx(jmxConnector, result));
