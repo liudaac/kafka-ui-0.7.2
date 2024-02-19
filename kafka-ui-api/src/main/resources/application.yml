@@ -1,0 +1,20 @@
+auth:
+  type: DISABLED
+
+management:
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "info,health"
+
+logging:
+  level:
+    root: INFO
+    com.provectus: DEBUG
+    reactor.netty.http.server.AccessLog: INFO
+
