@@ -63,6 +63,8 @@ const BrokersList: React.FC = () => {
         partitionsSkew: broker?.partitionsSkew,
         leadersSkew: broker?.leadersSkew,
         inSyncPartitions: broker?.inSyncPartitions,
+        bytesInPerSec: broker?.bytesInPerSec,
+        bytesOutPerSec: broker?.bytesOutPerSec,
       };
     });
   }, [diskUsage, brokers]);
@@ -73,13 +75,13 @@ const BrokersList: React.FC = () => {
         header: 'Broker ID',
         accessorKey: 'brokerId',
         // eslint-disable-next-line react/no-unstable-nested-components
-        cell: ({ row: { id }, getValue }) => (
+        cell: ({ getValue }) => (
           <S.RowCell>
             <LinkCell
               value={`${getValue<string | number>()}`}
               to={encodeURIComponent(`${getValue<string | number>()}`)}
             />
-            {id === String(activeControllers) && (
+            {`${getValue<string | number>()}` === String(activeControllers) && (
               <Tooltip
                 value={<CheckMarkRoundIcon />}
                 content="Active Controller"
@@ -159,6 +161,8 @@ const BrokersList: React.FC = () => {
         header: 'Host',
         accessorKey: 'host',
       },
+      { header: 'IN /sec', accessorKey: 'bytesInPerSec',  cell: SizeCell},
+      { header: 'OUT /sec', accessorKey: 'bytesOutPerSec', cell: SizeCell},
     ],
     []
   );
