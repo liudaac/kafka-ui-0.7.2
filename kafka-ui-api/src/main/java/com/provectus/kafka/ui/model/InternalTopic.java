@@ -32,6 +32,7 @@ public class InternalTopic {
   // topic configs
   private final List<InternalTopicConfig> topicConfigs;
   private final CleanupPolicy cleanUpPolicy;
+  private final long retentionMs;
 
   // rates from metrics
   private final BigDecimal bytesInPerSec;
@@ -184,8 +185,15 @@ public class InternalTopic {
             .map(CleanupPolicy::fromString)
             .orElse(CleanupPolicy.UNKNOWN)
     );
+    
+    topic.retentionMs(
+        configs.stream()
+            .filter(config -> config.name().equals("retention.ms"))
+            .findFirst()
+            .map(ConfigEntry::value)
+            .map(Long::parseLong)
+            .orElse(-1L));
 
     return topic.build();
   }
-
 }

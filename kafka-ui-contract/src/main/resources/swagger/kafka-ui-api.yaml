@@ -2280,6 +2280,9 @@ components:
           type: number
         underReplicatedPartitions:
           type: integer
+        retentionMs:
+          type: integer
+          format: int64
         cleanUpPolicy:
           $ref: '#/components/schemas/CleanUpPolicy'
         partitions:

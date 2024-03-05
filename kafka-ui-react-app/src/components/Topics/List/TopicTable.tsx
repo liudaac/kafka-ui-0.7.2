@@ -134,6 +134,11 @@ const TopicTable: React.FC = () => {
         cell: SizeCell,
       },
       {
+        header: 'RetentionMs',
+        accessorKey: 'retentionMs',
+        enableSorting: false,
+      },
+      {
         id: 'actions',
         header: '',
         cell: ActionsCell,
