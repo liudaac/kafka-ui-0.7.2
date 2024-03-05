@@ -43,6 +43,7 @@ This has two advantages: it aligns display items with Kafka-Manager and makes th
 #### Build Approach
 
 * Setup nodejs by nvm
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nvm install 16.15.0
 
 * Root directory of the project
@@ -51,16 +52,16 @@ This has two advantages: it aligns display items with Kafka-Manager and makes th
 
 * Build react-app and copy to kafka-ui-api
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cd kafka-ui-react-app/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;npm run build
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cd build/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cp -r * ../../kafka-ui-api/src/main/resources/static/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cd kafka-ui-react-app/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;npm run build<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cd build/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cp -r * ../../kafka-ui-api/src/main/resources/static/<br>
 
 * Root directory of the project
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mvn clean package -DskipTests
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cd kafka-ui-api/target 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Then you can see the release jar "kafka-ui-0.7.2.jar"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mvn clean package -DskipTests<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cd kafka-ui-api/target<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Then you can see the release jar "kafka-ui-0.7.2.jar"<br>
 
 * Run jar
 
