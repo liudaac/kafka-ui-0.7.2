@@ -59,7 +59,6 @@ public class StatisticsService {
                     ))))
         .doOnError(e -> {
               log.error("Failed to collect cluster {} info", cluster.getName(), e);
-              e.printStackTrace();
           }
         )
         .onErrorResume(

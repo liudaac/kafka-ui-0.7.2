@@ -71,6 +71,12 @@
             <groupId>io.confluent</groupId>
             <artifactId>kafka-schema-registry-client</artifactId>
             <version>${confluent.version}</version>
+            <exclusions>
+				<exclusion>
+					<groupId>org.apache.kafka</groupId>
+            		<artifactId>kafka-clients</artifactId>
+				</exclusion>
+			</exclusions>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>

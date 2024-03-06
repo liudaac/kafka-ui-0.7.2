@@ -11,7 +11,7 @@
     </modules>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>8</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <frontend-generated-sources-directory>..//kafka-ui-react-app/src/generated-sources
@@ -30,7 +30,7 @@
         <datasketches-java.version>3.1.0</datasketches-java.version>
         <groovy.version>3.0.13</groovy.version>
         <jackson.version>2.14.0</jackson.version>
-        <kafka-clients.version>3.6.1</kafka-clients.version>
+        <kafka-clients.version>0.11.0.3</kafka-clients.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.24</org.projectlombok.version>
         <protobuf-java.version>3.21.9</protobuf-java.version>
