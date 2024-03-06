@@ -34,7 +34,11 @@ Produce/sec
 Produce5min/sec
 This has two advantages: it aligns display items with Kafka-Manager and makes the list display more intuitive.
 
+![Topics视图](https://minishop.oss-cn-beijing.aliyuncs.com/topics.jpg)]
+
 * Added BytesIn/sec and BytesOut/sec to the Broker list, allowing for Broker-level data throughput statistics.
+
+![Brokers视图](https://minishop.oss-cn-beijing.aliyuncs.com/brokers.jpg)]
 
 * Adapted the retrieval of ActiveController to the Kraft protocol, addressing a bug in the official version.
 
