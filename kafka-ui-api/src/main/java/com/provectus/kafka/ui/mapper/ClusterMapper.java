@@ -131,8 +131,8 @@ public interface ClusterMapper {
       case DESCRIBE_CONFIGS -> KafkaAclDTO.OperationEnum.DESCRIBE_CONFIGS;
       case ALTER_CONFIGS -> KafkaAclDTO.OperationEnum.ALTER_CONFIGS;
       case IDEMPOTENT_WRITE -> KafkaAclDTO.OperationEnum.IDEMPOTENT_WRITE;
-      //      case CREATE_TOKENS -> KafkaAclDTO.OperationEnum.CREATE_TOKENS;
-      //      case DESCRIBE_TOKENS -> KafkaAclDTO.OperationEnum.DESCRIBE_TOKENS;
+      case CREATE_TOKENS -> KafkaAclDTO.OperationEnum.CREATE_TOKENS;
+      case DESCRIBE_TOKENS -> KafkaAclDTO.OperationEnum.DESCRIBE_TOKENS;
       case ANY -> throw new IllegalArgumentException("ANY operation can be only part of filter");
       case UNKNOWN -> KafkaAclDTO.OperationEnum.UNKNOWN;
     };
@@ -145,7 +145,7 @@ public interface ClusterMapper {
       case GROUP -> KafkaAclResourceTypeDTO.GROUP;
       case DELEGATION_TOKEN -> KafkaAclResourceTypeDTO.DELEGATION_TOKEN;
       case TRANSACTIONAL_ID -> KafkaAclResourceTypeDTO.TRANSACTIONAL_ID;
-      //case USER -> KafkaAclResourceTypeDTO.USER;
+      case USER -> KafkaAclResourceTypeDTO.USER;
       case ANY -> throw new IllegalArgumentException("ANY type can be only part of filter");
       case UNKNOWN -> KafkaAclResourceTypeDTO.UNKNOWN;
     };
