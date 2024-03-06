@@ -475,25 +475,26 @@ public class ReactiveAdminClient implements Closeable {
   public Mono<Table<String, TopicPartition, Long>> listConsumerGroupOffsets(List<String> consumerGroups,
                                                                             // all partitions if null passed
                                                                             @Nullable List<TopicPartition> partitions) {
-	  final Map<String, KafkaFuture<Map<TopicPartition, OffsetAndMetadata>>> futures = consumerGroups.stream()
-	            .collect(Collectors.toMap(
-	                g -> g,
-	                g -> client.listConsumerGroupOffsets(g).partitionsToOffsetAndMetadata()
-	        ));	
-	  Function<Collection<String>, Mono<Map<String, Map<TopicPartition, OffsetAndMetadata>>>> call =
-    		groups -> toMono(KafkaFuture.allOf(futures.values().toArray(new KafkaFuture[0])).thenApply(
+    final Map<String, KafkaFuture<Map<TopicPartition, OffsetAndMetadata>>> futures = 
+            consumerGroups.stream().collect(Collectors.toMap(
+               g -> g,
+               g -> client.listConsumerGroupOffsets(g).partitionsToOffsetAndMetadata()
+    ));	
+    Function<Collection<String>, Mono<Map<String, Map<TopicPartition, OffsetAndMetadata>>>> call =
+        groups -> toMono(KafkaFuture.allOf(futures.values().toArray(new KafkaFuture[0])).thenApply(
                     nil -> {
-                        Map<String, Map<TopicPartition, OffsetAndMetadata>> listedConsumerGroupOffsets = new HashMap<>(futures.size());
-                        futures.forEach((key, future) -> {
-                            try {
-                                listedConsumerGroupOffsets.put(key, future.get());
-                            } catch (InterruptedException | ExecutionException e) {
-                                // This should be unreachable, since the KafkaFuture#allOf already ensured
-                                // that all of the futures completed successfully.
-                                throw new RuntimeException(e);
-                            }
-                        });
-                        return listedConsumerGroupOffsets;
+                      Map<String, Map<TopicPartition, OffsetAndMetadata>> listedConsumerGroupOffsets = 
+                        new HashMap<>(futures.size());
+                      futures.forEach((key, future) -> {
+                        try {
+                          listedConsumerGroupOffsets.put(key, future.get());
+                        } catch (InterruptedException | ExecutionException e) {
+                          // This should be unreachable, since the KafkaFuture#allOf already ensured
+                          // that all of the futures completed successfully.
+                          throw new RuntimeException(e);
+                        }
+                      });
+                      return listedConsumerGroupOffsets;
                     })
         );
 
