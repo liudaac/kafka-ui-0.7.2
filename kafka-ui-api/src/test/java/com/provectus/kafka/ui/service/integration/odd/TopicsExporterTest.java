@@ -117,22 +117,22 @@ class TopicsExporterTest {
                     ))
             )
         )
-//        .topicConfigs(
-//            Map.of(
-//                "testTopic", List.of(
-//                    new ConfigEntry(
-//                        "custom.config",
-//                        "100500",
-//                        ConfigEntry.ConfigSource.DYNAMIC_TOPIC_CONFIG,
-//                        false,
-//                        false,
-//                        List.of(),
-//                        ConfigEntry.ConfigType.INT,
-//                        null
-//                    )
-//                )
-//            )
-//        )
+        //        .topicConfigs(
+        //            Map.of(
+        //                "testTopic", List.of(
+        //                    new ConfigEntry(
+        //                        "custom.config",
+        //                        "100500",
+        //                        ConfigEntry.ConfigSource.DYNAMIC_TOPIC_CONFIG,
+        //                        false,
+        //                        false,
+        //                        List.of(),
+        //                        ConfigEntry.ConfigType.INT,
+        //                        null
+        //                    )
+        //                )
+        //            )
+        //        )
         .build();
 
     StepVerifier.create(topicsExporter.export(cluster))
