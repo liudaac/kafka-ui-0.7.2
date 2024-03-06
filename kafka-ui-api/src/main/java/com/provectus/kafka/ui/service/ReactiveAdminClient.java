@@ -46,7 +46,6 @@ import org.apache.kafka.clients.admin.ConsumerGroupListing;
 import org.apache.kafka.clients.admin.DescribeClusterOptions;
 import org.apache.kafka.clients.admin.DescribeClusterResult;
 import org.apache.kafka.clients.admin.DescribeConfigsOptions;
-import org.apache.kafka.clients.admin.ListConsumerGroupOffsetsSpec;
 import org.apache.kafka.clients.admin.ListOffsetsResult;
 import org.apache.kafka.clients.admin.ListTopicsOptions;
 import org.apache.kafka.clients.admin.NewPartitionReassignment;
@@ -319,7 +318,7 @@ public class ReactiveAdminClient implements Closeable {
 
   private Mono<Map<String, TopicDescription>> describeTopicsImpl(Collection<String> topics) {
     return toMonoWithExceptionFilter(
-        client.describeTopics(topics).topicNameValues(),
+        client.describeTopics(topics).values(),
         UnknownTopicOrPartitionException.class,
         // we only describe topics that we see from listTopics() API, so we should have permission to do it,
         // but also adding this exception here for rare case when access restricted after we called listTopics()
@@ -476,14 +475,26 @@ public class ReactiveAdminClient implements Closeable {
   public Mono<Table<String, TopicPartition, Long>> listConsumerGroupOffsets(List<String> consumerGroups,
                                                                             // all partitions if null passed
                                                                             @Nullable List<TopicPartition> partitions) {
-    Function<Collection<String>, Mono<Map<String, Map<TopicPartition, OffsetAndMetadata>>>> call =
-        groups -> toMono(
-            client.listConsumerGroupOffsets(
-                groups.stream()
-                    .collect(Collectors.toMap(
-                        g -> g,
-                        g -> new ListConsumerGroupOffsetsSpec().topicPartitions(partitions)
-                    ))).all()
+	  final Map<String, KafkaFuture<Map<TopicPartition, OffsetAndMetadata>>> futures = consumerGroups.stream()
+	            .collect(Collectors.toMap(
+	                g -> g,
+	                g -> client.listConsumerGroupOffsets(g).partitionsToOffsetAndMetadata()
+	        ));	
+	  Function<Collection<String>, Mono<Map<String, Map<TopicPartition, OffsetAndMetadata>>>> call =
+    		groups -> toMono(KafkaFuture.allOf(futures.values().toArray(new KafkaFuture[0])).thenApply(
+                    nil -> {
+                        Map<String, Map<TopicPartition, OffsetAndMetadata>> listedConsumerGroupOffsets = new HashMap<>(futures.size());
+                        futures.forEach((key, future) -> {
+                            try {
+                                listedConsumerGroupOffsets.put(key, future.get());
+                            } catch (InterruptedException | ExecutionException e) {
+                                // This should be unreachable, since the KafkaFuture#allOf already ensured
+                                // that all of the futures completed successfully.
+                                throw new RuntimeException(e);
+                            }
+                        });
+                        return listedConsumerGroupOffsets;
+                    })
         );
 
     Mono<Map<String, Map<TopicPartition, OffsetAndMetadata>>> merged = partitionCalls(
