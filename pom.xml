@@ -11,7 +11,7 @@
     </modules>
 
     <properties>
-        <maven.compiler.release>8</maven.compiler.release>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <frontend-generated-sources-directory>..//kafka-ui-react-app/src/generated-sources
