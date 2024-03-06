@@ -479,7 +479,7 @@ public class ReactiveAdminClient implements Closeable {
             consumerGroups.stream().collect(Collectors.toMap(
                g -> g,
                g -> client.listConsumerGroupOffsets(g).partitionsToOffsetAndMetadata()
-    ));	
+    ));
     Function<Collection<String>, Mono<Map<String, Map<TopicPartition, OffsetAndMetadata>>>> call =
         groups -> toMono(KafkaFuture.allOf(futures.values().toArray(new KafkaFuture[0])).thenApply(
                     nil -> {
