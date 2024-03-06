@@ -57,8 +57,11 @@ public class StatisticsService {
                                 .topicDescriptions((Map<String, TopicDescription>) results[4])
                                 .build()
                     ))))
-        .doOnError(e ->
-            log.error("Failed to collect cluster {} info", cluster.getName(), e))
+        .doOnError(e -> {
+              log.error("Failed to collect cluster {} info", cluster.getName(), e);
+              e.printStackTrace();
+          }
+        )
         .onErrorResume(
             e -> Mono.just(Statistics.empty().toBuilder().lastKafkaException(e).build()));
   }
