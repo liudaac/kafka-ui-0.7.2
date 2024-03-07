@@ -45,7 +45,6 @@ const Metrics = () => {
               label="Port *"
               name="metrics.port"
               type="number"
-              positiveOnly
               withError
             />
           </S.Port>
