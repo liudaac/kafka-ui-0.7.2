@@ -71,7 +71,7 @@ const metricsSchema = lazy((value) => {
   if (typeof value === 'object') {
     return object({
       type: string().oneOf(['JMX', 'PROMETHEUS']).required('required field'),
-      port: portSchema,
+      port: number(),
       isAuth: boolean(),
       username: string().when('isAuth', {
         is: true,
