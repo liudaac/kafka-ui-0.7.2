@@ -80,9 +80,9 @@ const TopicTable: React.FC = () => {
         cell: SizeCell,
       },
       {
-        id: TopicColumnsToSort.MSG_RATE,
+        id: TopicColumnsToSort.MSG_1_RATE,
         header: 'Msg /sec',
-        accessorKey: 'messageInMeanRate',
+        accessorKey: 'messageInOneMinuteRate',
         enableSorting: true,
       },
       {
@@ -92,9 +92,9 @@ const TopicTable: React.FC = () => {
         enableSorting: true,
       },
       {
-        id: TopicColumnsToSort.FETCH_RATE,
+        id: TopicColumnsToSort.FETCH_1_RATE,
         header: 'Fetch /sec',
-        accessorKey: 'fetchRequestsMeanRate',
+        accessorKey: 'fetchRequestsOneMinuteRate',
         enableSorting: true,
       },
       {
@@ -105,7 +105,7 @@ const TopicTable: React.FC = () => {
       },
       {
         header: 'Produce /sec',
-        accessorKey: 'produceRequestsMeanRate',
+        accessorKey: 'produceRequestsOneMinuteRate',
         enableSorting: false,
       },
       {

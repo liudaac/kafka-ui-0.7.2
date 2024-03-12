@@ -231,12 +231,12 @@ public class TopicsController extends AbstractController implements TopicsApi {
         return Comparator.comparing(InternalTopic::getBytesInPerSec);
       case BYTESOUT_PERSEC:
         return Comparator.comparing(InternalTopic::getBytesOutPerSec);
-      case MSG_RATE:
-        return Comparator.comparing(InternalTopic::getMessageInMeanRate);
+      case MSG_1_RATE:
+        return Comparator.comparing(InternalTopic::getMessageInOneMinuteRate);
       case MSG_5_RATE:
         return Comparator.comparing(InternalTopic::getMessageInFiveMinuteRate);
-      case FETCH_RATE:
-        return Comparator.comparing(InternalTopic::getFetchRequestsMeanRate);
+      case FETCH_1_RATE:
+        return Comparator.comparing(InternalTopic::getFetchRequestsOneMinuteRate);
       case FETCH_5_RATE:
         return Comparator.comparing(InternalTopic::getFetchRequestsFiveMinuteRate);
       case NAME:

@@ -2211,9 +2211,9 @@ components:
         - SIZE
         - BYTESIN_PERSEC
         - BYTESOUT_PERSEC
-        - MSG_RATE
+        - MSG_1_RATE
         - MSG_5_RATE
-        - FETCH_RATE
+        - FETCH_1_RATE
         - FETCH_5_RATE
 
     ConnectorColumnsToSort:
