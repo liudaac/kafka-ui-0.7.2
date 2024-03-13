@@ -8,7 +8,13 @@ import { useConfirm } from 'lib/hooks/useConfirm';
 import useAppParams from 'lib/hooks/useAppParams';
 import { useAcls, useDeleteAcl } from 'lib/hooks/api/acl';
 import { ClusterName } from 'redux/interfaces';
+import ClusterContext from 'components/contexts/ClusterContext';
+import { ActionButton } from 'components/common/ActionComponent';
+import { clusterAclNewRelativePath } from 'lib/paths';
+import PlusIcon from 'components/common/Icons/PlusIcon';
 import {
+  Action,
+  ResourceType,
   KafkaAcl,
   KafkaAclNamePatternType,
   KafkaAclPermissionEnum,
@@ -23,6 +29,7 @@ const ACList: React.FC = () => {
   const { deleteResource } = useDeleteAcl(clusterName);
   const modal = useConfirm(true);
 
+  const { isReadOnly } = React.useContext(ClusterContext);
   const [rowId, setRowId] = React.useState('');
 
   const onDeleteClick = (acl: KafkaAcl | null) => {
@@ -138,7 +145,21 @@ const ACList: React.FC = () => {
 
   return (
     <>
-      <PageHeading text="Access Control List" />
+      <PageHeading text="Access Control List">
+        {!isReadOnly && (
+          <ActionButton
+            buttonType="primary"
+            buttonSize="M"
+            to={clusterAclNewRelativePath}
+            permission={{
+              resource: ResourceType.TOPIC,
+              action: Action.CREATE,
+            }}
+          >
+            <PlusIcon /> Add an ACL
+          </ActionButton>
+        )}
+      </PageHeading>
       <Table
         columns={columns}
         data={aclList ?? []}
