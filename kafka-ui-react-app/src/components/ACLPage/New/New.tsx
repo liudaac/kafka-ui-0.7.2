@@ -42,7 +42,7 @@ const New: React.FC = () => {
   const onSubmit = async (data: KafkaAcl) => {
     try {
       await createAcl.createResource(data);
-      navigate(`../acl`);
+      navigate(`../`);
     } catch (e) {
       // do nothing
     }

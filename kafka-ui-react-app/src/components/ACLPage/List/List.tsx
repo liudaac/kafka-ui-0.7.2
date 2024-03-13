@@ -152,7 +152,7 @@ const ACList: React.FC = () => {
             buttonSize="M"
             to={clusterAclNewRelativePath}
             permission={{
-              resource: ResourceType.TOPIC,
+              resource: ResourceType.ACL,
               action: Action.CREATE,
             }}
           >
