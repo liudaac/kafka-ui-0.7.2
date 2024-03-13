@@ -21,7 +21,7 @@
 
 #### UI for Apache Kafka is a free, open-source web UI to monitor and manage Apache Kafka clusters.
 
-Compared to the official latest version 0.7.1, the current project has made three upgrades:
+Compared to the official latest version 0.7.1, the current project has made 5 upgrades:
 
 * Added the following configuration items to the Topic list:
 BytesIn/sec
@@ -43,6 +43,11 @@ This has two advantages: it aligns display items with Kafka-Manager and makes th
 * Adapted the retrieval of ActiveController to the Kraft protocol, addressing a bug in the official version.
 
 * Replaced the concept of the jmxport configuration item. Previously, a cluster could only use one jmxport. Now, the concept of jmxport-offset has been introduced, where the actual jmxport of the broker = brokerport + jmxport-offset, thus supporting single-machine mixed deployment scenarios.
+
+* Add support for acl-creation in the listpage
+
+![ACL创建入口](https://minishop.oss-cn-beijing.aliyuncs.com/acls.png)]
+![ACL创建表单](https://minishop.oss-cn-beijing.aliyuncs.com/acladdpage.png)]
 
 #### Build Approach
 
