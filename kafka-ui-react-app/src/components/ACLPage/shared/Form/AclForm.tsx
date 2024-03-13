@@ -76,24 +76,20 @@ const AclForm: React.FC<Props> = ({
   } = useFormContext();
   const navigate = useNavigate();
   const { clusterName } = useAppParams<{ clusterName: ClusterName }>();
-  
   const getResourceTypeValue =
     ResourceTypeOptions.find((option: SelectOption) => {
       return option.value === resourceType;
     })?.value || ResourceTypeOptions[0].value;
-  
   const getNamePatternTypeValue =
-    NamePatternTypeOptions.find((option: SelectOption) => 
+    NamePatternTypeOptions.find((option: SelectOption) => {
       return option.value === namePatternType;
     })?.value || NamePatternTypeOptions[0].value;
-    
   const getOperationValue =
-    OperationOptions.find((option: SelectOption) => 
+    OperationOptions.find((option: SelectOption) => {
       return option.value === operation;
     })?.value || OperationOptions[0].value;
-    
   const getPermissonValue =
-    PermissonOptions.find((option: SelectOption) => 
+    PermissonOptions.find((option: SelectOption) => {
       return option.value === permission;
     })?.value || PermissonOptions[0].value;
 
@@ -108,7 +104,9 @@ const AclForm: React.FC<Props> = ({
         <fieldset disabled={isEditing}>
           <S.Column>
             <S.NameField>
-              <InputLabel htmlFor="aclFormResourceType">Resource Type *</InputLabel>
+              <InputLabel htmlFor="aclFormResourceType">
+                Resource Type *
+              </InputLabel>
               <Controller
                 defaultValue={ResourceTypeOptions[0].value}
                 control={control}
@@ -134,12 +132,12 @@ const AclForm: React.FC<Props> = ({
                 Resource Name *
               </InputLabel>
               <Input
-               id="aclFormResourceName"
-               autoFocus
-               name="resourceName"
-               placeholder="Resource Name"
-               defaultValue={resourceName}
-               autoComplete="off"
+                id="aclFormResourceName"
+                autoFocus
+                name="resourceName"
+                placeholder="Resource Name"
+                defaultValue={resourceName}
+                autoComplete="off"
               />
               <FormError>
                 <ErrorMessage errors={errors} name="resourceName" />
@@ -175,9 +173,7 @@ const AclForm: React.FC<Props> = ({
 
         <S.Column>
           <div>
-            <InputLabel htmlFor="aclFormPrincipal">
-              Principal *
-            </InputLabel>
+            <InputLabel htmlFor="aclFormPrincipal">Principal *</InputLabel>
             <Input
               id="aclFormPrincipal"
               placeholder="Principal"
@@ -191,15 +187,13 @@ const AclForm: React.FC<Props> = ({
             </FormError>
           </div>
           <div>
-            <InputLabel htmlFor="aclFormHost">
-              Host *
-            </InputLabel>
+            <InputLabel htmlFor="aclFormHost">Host *</InputLabel>
             <Input
               id="aclFormHost"
               placeholder="Host"
               name="host"
               autoFocus
-              defaultValue="*"
+              defaultValue={host}
               autoComplete="off"
             />
             <FormError>
@@ -210,10 +204,7 @@ const AclForm: React.FC<Props> = ({
 
         <S.Column>
           <div>
-            <InputLabel
-              id="aclFormOperationLabel"
-              htmlFor="aclFormOperation"
-            >
+            <InputLabel id="aclFormOperationLabel" htmlFor="aclFormOperation">
               Operation *
             </InputLabel>
             <Controller
@@ -235,10 +226,7 @@ const AclForm: React.FC<Props> = ({
           </div>
 
           <div>
-            <InputLabel
-              id="aclFormPermissionLabel"
-              htmlFor="aclFormPermission"
-            >
+            <InputLabel id="aclFormPermissionLabel" htmlFor="aclFormPermission">
               Permission *
             </InputLabel>
             <Controller
@@ -259,7 +247,7 @@ const AclForm: React.FC<Props> = ({
             />
           </div>
         </S.Column>
-        
+
         <S.ButtonWrapper>
           <Button
             type="button"
@@ -281,6 +269,6 @@ const AclForm: React.FC<Props> = ({
       </fieldset>
     </StyledForm>
   );
-}
+};
 
 export default AclForm;
