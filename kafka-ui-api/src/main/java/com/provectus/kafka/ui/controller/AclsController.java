@@ -82,7 +82,16 @@ public class AclsController extends AbstractController implements AclsApi {
         Mono.just(
             ResponseEntity.ok(
                 aclsService.listAcls(getCluster(clusterName), filter)
-                    .map(ClusterMapper::toKafkaAclDto)))
+                    .map(ClusterMapper::toKafkaAclDto).sort((a, b) -> {
+                      int result = a.getPrincipal().compareTo(b.getPrincipal());
+                      if (result == 0) {
+                        result = a.getResourceName().compareTo(b.getResourceName());
+                        if (result == 0) {
+                          result = a.getPermission().compareTo(b.getPermission());
+                        }
+                      }
+                      return result;
+                    })))
     );
   }
 
